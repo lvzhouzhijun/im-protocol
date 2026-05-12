@@ -1,0 +1,3 @@
+syntax = "proto3";
+package openim.statistics;
+option go_package = "github.com/lvzhouzhijun/im-protocol/statistics";

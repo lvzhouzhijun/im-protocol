@@ -1,0 +1,74 @@
+syntax = "proto3";
+package openim.auth;
+
+option go_package = "github.com/lvzhouzhijun/im-protocol/auth";
+
+message getAdminTokenReq {
+  string secret = 1;
+  string userID = 3;
+}
+
+message getAdminTokenResp {
+  string token = 2;
+  int64 expireTimeSeconds = 3;
+}
+
+message forceLogoutReq {
+  int32 platformID = 1;
+  string userID = 2;
+}
+
+message forceLogoutResp {}
+
+message parseTokenReq {
+  string token = 1;
+}
+
+message parseTokenResp {
+  string userID = 1;
+  int32 platformID = 2;
+  int64 expireTimeSeconds = 4;
+}
+
+message getUserTokenReq {
+  int32 platformID = 1;
+  string userID = 2;
+}
+
+message getUserTokenResp {
+  string token = 1;
+  int64 expireTimeSeconds = 2;
+}
+
+message invalidateTokenReq {
+  string preservedToken = 1;
+  string userID = 2;
+  int32 platformID = 3;
+}
+
+message invalidateTokenResp {}
+
+message kickTokensReq {
+  repeated string tokens = 1;
+}
+
+message kickTokensResp {}
+
+message GetExistingTokenReq {
+  string userID = 1;
+  int32 platformID = 2;
+}
+
+message getExistingTokenResp {
+  map<string,int32> tokenStates = 1;
+}
+
+service Auth {
+  rpc getAdminToken(getAdminTokenReq) returns (getAdminTokenResp);
+  rpc getUserToken(getUserTokenReq) returns (getUserTokenResp);
+  rpc forceLogout(forceLogoutReq) returns (forceLogoutResp);
+  rpc parseToken(parseTokenReq) returns (parseTokenResp);
+  rpc invalidateToken(invalidateTokenReq) returns (invalidateTokenResp);
+  rpc kickTokens(kickTokensReq) returns (kickTokensResp);
+  rpc getExistingToken(GetExistingTokenReq) returns (getExistingTokenResp);
+}

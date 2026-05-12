@@ -29,7 +29,7 @@ func (Meeting) GenGo() error {
 	log.SetOutput(os.Stdout)
 	log.Println("Generating Go code from meeting proto files")
 
-	protoc, err := getToolPath("protoc")
+	protoc, err := getToolPath("protoc.exe")
 	if err != nil {
 		return err
 	}

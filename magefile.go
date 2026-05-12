@@ -62,6 +62,7 @@ var protoModules = []string{
 	"relation",
 	"rtc",
 	"sdkws",
+	"statistics",
 	"third",
 	"user",
 	"wrapperspb",
@@ -143,7 +144,7 @@ func GenGo() error {
 	log.SetOutput(os.Stdout)
 	log.Println("Generating Go code from proto files")
 
-	protoc, err := getToolPath("protoc")
+	protoc, err := getToolPath("protoc.exe")
 	if err != nil {
 		return err
 	}
